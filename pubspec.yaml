@@ -43,12 +43,7 @@ flutter:
 
 
   fonts:
-    - family: Inter
+    - family: Quicksand
       fonts:
-        - asset: assets/fonts/Inter.ttf
-          style: italic
-
-    - family: ARCENA
-      fonts:
-        - asset: assets/fonts/ARCENA.ttf
+        - asset: assets/fonts/Quicksand.otf
           style: italic
