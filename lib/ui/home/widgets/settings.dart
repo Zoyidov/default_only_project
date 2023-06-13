@@ -5,12 +5,11 @@ import '../../../utils/colors.dart';
 import '../../../utils/images.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key? key, required this.title, required this.icon, required this.widthIcon, required this.onTap}) : super(key: key);
+  const Settings({Key? key, required this.title, required this.icon, required this.widthIcon,}) : super(key: key);
 
   final String title;
   final String icon;
   final double widthIcon;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,6 @@ class Settings extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: onTap,
       child: Row(
         children: [
           Expanded(

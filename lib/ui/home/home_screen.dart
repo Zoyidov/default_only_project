@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:login_screen_homework/ui/home/home_screen2.dart';
+import 'package:login_screen_homework/ui/home/profile_screen.dart';
+import 'package:login_screen_homework/ui/home/settings_screen.dart';
 import 'package:login_screen_homework/ui/home/widgets/box.dart';
 import 'package:login_screen_homework/ui/home/widgets/settings.dart';
 import 'package:login_screen_homework/utils/colors.dart';
 import 'package:login_screen_homework/utils/images.dart';
 
-class Account extends StatefulWidget {
-  const Account({super.key});
+import 'about_screen.dart';
+import 'account_screen.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<Account> createState() => _AccountState();
+  State<Home> createState() => _AccountState();
 }
 
-class _AccountState extends State<Account> {
-  int _selectedIndex = 0; // Variable to keep track of the selected tab index
+class _AccountState extends State<Home> {
+  int _selectedIndex = 0;
 
   List<Widget> _pages = [
     Profile(),
     Profile(),
     Profile(),
     Profile(),
-    // Define your page widgets here
-    // Example: HomePage(), ProfilePage(), SettingsPage(), etc.
   ];
   final images = [
     AppImages.menu,
@@ -32,7 +34,6 @@ class _AccountState extends State<Account> {
   ];
   final message = SvgPicture.asset(
     AppImages.message,
-    // Use messageIconColor variable to set the color
   );
 
   @override
@@ -91,7 +92,7 @@ class _AccountState extends State<Account> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: width * (100 / 375)),
+                  padding: EdgeInsets.only(left: 87),
                   child: GestureDetector(
                       onTap: () {}, child: SvgPicture.asset(AppImages.exit)),
                 ),
@@ -109,43 +110,82 @@ class _AccountState extends State<Account> {
                 SizedBox(
                   height: height * (40 / 812),
                 ),
-                Settings(
-                  title: "Profile",
-                  icon: AppImages.user,
-                  widthIcon: 215,
+                GestureDetector(
                   onTap: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
                       return Profile();
                     }));
                   },
+                  child: SizedBox(
+                    height: 50,
+                    width: 327,
+                    child: Settings(
+                      title: "Profile",
+                      icon: AppImages.user,
+                      widthIcon: 215,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: height * (25 / 812),
                 ),
-                Settings(
-                  title: "Account",
-                  icon: AppImages.account,
-                  widthIcon: 215,
-                  onTap: () {},
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Account();
+                    }));
+                  },
+                  child: SizedBox(
+                    height: 50,
+                    width: 327,
+                    child: Settings(
+                      title: "Account",
+                      icon: AppImages.account,
+                      widthIcon: 215,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: height * (25 / 812),
                 ),
-                Settings(
-                  title: "Settings",
-                  icon: AppImages.settings,
-                  widthIcon: 215,
-                  onTap: () {},
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Setting();
+                    }));
+                  },
+                  child: SizedBox(
+                    height: 50,
+                    width: 327,
+                    child: Settings(
+                      title: "Settings",
+                      icon: AppImages.settings,
+                      widthIcon: 215,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: height * (25 / 812),
                 ),
-                Settings(
-                  title: "About",
-                  icon: AppImages.about,
-                  widthIcon: 215,
-                  onTap: () {},
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return About();
+                    }));
+                  },
+                  child: SizedBox(
+                    height: 50,
+                    width: 327,
+                    child: Settings(
+                      title: "About",
+                      icon: AppImages.about,
+                      widthIcon: 215,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: height * (25 / 812),
@@ -211,7 +251,7 @@ class _AccountState extends State<Account> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 63, left: 15),
+              padding: const EdgeInsets.only(top: 63, left: 10),
               child: Row(
                 children: [
                   Row(
@@ -250,7 +290,7 @@ class _AccountState extends State<Account> {
                     ],
                   ),
                   SizedBox(
-                    width: width * 48 / 375,
+                    width: width * 45 / 375,
                   ),
                   Row(
                     children: [
@@ -276,8 +316,7 @@ class _AccountState extends State<Account> {
             ),
             Spacer(),
             Container(
-              height: 56.0, // Adjust the height as needed
-              // color: Colors.grey, // Customize the background color
+              height: 56.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: _buildNavigationItems(),
@@ -294,13 +333,13 @@ class _AccountState extends State<Account> {
       return GestureDetector(
         onTap: () {
           setState(() {
-            _selectedIndex = index; // Update the selected tab index
+            _selectedIndex = index;
           });
         },
         child: Container(
-          height: 40, width: 40,
-          padding: EdgeInsets.all(8.0),
-          // color: Colors.red,// Adjust the padding as needed
+          height: 40,
+          width: 40,
+          padding: const EdgeInsets.all(8.0),
           child: _selectedIndex == index
               ? _selectedItemWidget(index)
               : _unselectedItemWidget(index),
@@ -310,19 +349,16 @@ class _AccountState extends State<Account> {
   }
 
   Widget _selectedItemWidget(int index) {
-    // Customize the selected item widget
     return SvgPicture.asset(
       images[index],
       color: AppColors.C_316D86,
-
     );
   }
 
   Widget _unselectedItemWidget(int index) {
-    // Customize the unselected item widget
     return SvgPicture.asset(
-      images[index], // Replace with the appropriate icon
-      color: Colors.grey, // Customize the unselected icon color
+      images[index],
+      color: Colors.grey,
     );
   }
 }
