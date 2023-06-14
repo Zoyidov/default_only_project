@@ -8,6 +8,7 @@ class Gender extends StatefulWidget {
   final String selectedIcon;
   final String text;
   final VoidCallback onTap;
+  final bool isSelected;
 
   const Gender({
     Key? key,
@@ -15,6 +16,7 @@ class Gender extends StatefulWidget {
     required this.selectedIcon,
     required this.text,
     required this.onTap,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -22,31 +24,26 @@ class Gender extends StatefulWidget {
 }
 
 class _GenderState extends State<Gender> {
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
-        widget.onTap();
-      },
+      onTap: widget.onTap,
       child: Container(
         height: 48,
         width: 156,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: isSelected ? AppColors.C_52B6DF : AppColors.C_CBD5E1),
-          color: isSelected ? AppColors.C_CBD5E1 : AppColors.C_F1F5F9,
+          border: Border.all(
+            color: widget.isSelected ? AppColors.C_52B6DF : AppColors.C_CBD5E1,
+          ),
+          color: widget.isSelected ? AppColors.C_CBD5E1 : AppColors.C_F1F5F9,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            isSelected
+            widget.isSelected
                 ? SvgPicture.asset(
-              AppImages.done,
+              widget.selectedIcon,
               width: 24,
               height: 24,
             )
@@ -60,6 +57,9 @@ class _GenderState extends State<Gender> {
               widget.text,
               style: TextStyle(
                 fontSize: 16,
+                color: widget.isSelected
+                    ? AppColors.blackColor
+                    : AppColors.blackColor,
               ),
             ),
           ],

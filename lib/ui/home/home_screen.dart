@@ -92,7 +92,7 @@ class _AccountState extends State<Home> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 87),
+                  padding: EdgeInsets.only(left: 100),
                   child: GestureDetector(
                       onTap: () {}, child: SvgPicture.asset(AppImages.exit)),
                 ),

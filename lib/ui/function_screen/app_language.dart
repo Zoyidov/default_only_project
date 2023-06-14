@@ -86,47 +86,75 @@ class Language extends StatelessWidget {
               ),
               Expanded(
                 child: ListView(
-                  children: [ Column(
-                    children: [
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.indonesia, text: "Indonesia", selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.philippine, text: "Philippines",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.italy, text: "Italy",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.irland, text: "Ireland",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.german, text: "German",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.malaysia, text: "Malaysia",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.america, text: "America",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.belgia, text: "Belgia",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Regions(prefixImage: AppImages.zeland, text: "New Zeland",selectedImage: AppImages.notdone, notselectedImage: AppImages.Done,),
-                    ],
-                  ),
-          ]
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.indonesia,
+                          text: "Indonesia",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.philippine,
+                          text: "Philippines",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.italy,
+                          text: "Italy",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.irland,
+                          text: "Ireland",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.german,
+                          text: "Germany",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.malaysia,
+                          text: "Malaysia",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.america,
+                          text: "America",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.belgia,
+                          text: "Belgium",
+                          selectedImage: AppImages.notdone,
+                          notselectedImage: AppImages.Done,
+                        ),
+                        SizedBox(height: 32),
+                        Regions(
+                          prefixImage: AppImages.zeland,
+                          text: "New Zealand",
+                          selectedImage: AppImages.notDone,
+                          notselectedImage: AppImages.done,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],

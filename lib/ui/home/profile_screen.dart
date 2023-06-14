@@ -5,8 +5,23 @@ import 'package:login_screen_homework/ui/home/widgets/input_adress.dart';
 import 'package:login_screen_homework/utils/colors.dart';
 import 'package:login_screen_homework/utils/images.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+enum GenderOption { male, female }
+
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
+
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  GenderOption selectedGender = GenderOption.male;
+
+  void selectGender(GenderOption option) {
+    setState(() {
+      selectedGender = option;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +35,24 @@ class Profile extends StatelessWidget {
               Row(
                 children: [
                   GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) {
-                              return Home();
-                            }));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Icon(Icons.arrow_back_ios),
-                      )),
+                    onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                            return Home();
+                          }));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Icon(Icons.arrow_back_ios),
+                    ),
+                  ),
                   SizedBox(
                     width: 110,
                   ),
                   Text(
                     "Profile",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                    style:
+                    TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                   )
                 ],
               ),
@@ -56,170 +73,186 @@ class Profile extends StatelessWidget {
                 height: 40,
               ),
               Expanded(
-                child: ListView(children: [
-                  Column(
-                    children: [
-                      Container(
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Name",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 15),
+                child: ListView(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Name",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 15),
+                            ),
                           ),
                         ),
-                      ),
-                      UniversalInput(
-                        type: TextInputType.text,
-                        hintText: "Marvin McKinney",
-                        action: TextInputAction.next,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Align(
+                        UniversalInput(
+                          type: TextInputType.text,
+                          hintText: "Marvin McKinney",
+                          action: TextInputAction.next,
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Email",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
-                          )),
-                      UniversalInput(
-                        type: TextInputType.emailAddress,
-                        hintText: "marvin@email.com",
-                        action: TextInputAction.next,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Align(
+                          ),
+                        ),
+                        UniversalInput(
+                          type: TextInputType.emailAddress,
+                          hintText: "marvin@email.com",
+                          action: TextInputAction.next,
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Date of birth",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
-                          )),
-                      UniversalInput(
-                        type: TextInputType.datetime,
-                        hintText: "11/08/1997",
-                        action: TextInputAction.next,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Align(
+                          ),
+                        ),
+                        UniversalInput(
+                          type: TextInputType.datetime,
+                          hintText: "11/08/1997",
+                          action: TextInputAction.next,
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Phone Number",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
-                          )),
-                      UniversalInput(
-                        type: TextInputType.number,
-                        hintText: "702-889-5347",
-                        action: TextInputAction.next,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Align(
+                          ),
+                        ),
+                        UniversalInput(
+                          type: TextInputType.number,
+                          hintText: "702-889-5347",
+                          action: TextInputAction.next,
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Student ID",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
-                          )),
-                      UniversalInput(
-                        type: TextInputType.phone,
-                        hintText: "#87654",
-                        action: TextInputAction.done,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Align(
+                          ),
+                        ),
+                        UniversalInput(
+                          type: TextInputType.phone,
+                          hintText: "#87654",
+                          action: TextInputAction.done,
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Gender",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
-                          )),
-                      SizedBox(
-                        height: 8,
-                        width: 24,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Gender(
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                          width: 24,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Gender(
                               icon: AppImages.notDone,
                               selectedIcon: AppImages.done,
                               text: "Male",
-                              onTap: () {}),
-                          Gender(
-                            icon: AppImages.notDone,
-                            selectedIcon: AppImages.done,
-                            text: "Female", onTap: () {},
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Align(
+                              onTap: () => selectGender(GenderOption.male),
+                              isSelected: selectedGender == GenderOption.male,
+                            ),
+                            Gender(
+                              icon: AppImages.notDone,
+                              selectedIcon: AppImages.done,
+                              text: "Female",
+                              onTap: () => selectGender(GenderOption.female),
+                              isSelected: selectedGender == GenderOption.female,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Adress",
+                            "Address",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
-                          )),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Container(
-                        height: 100,
-                        width: 327,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: AppColors.C_CBD5E1),
-                            ),
-                            filled: true,
-                            fillColor: AppColors.C_F1F5F9,
-                          ),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.blackColor,
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: (){},
-                        child: Container(
-                          height: 56,
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Container(
+                          height: 100,
                           width: 327,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.C_52B6DF),
-                          child: Stack(
-                            children: [
-                              Align(
-                                  child: Text(
-                                    "Update Profil",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.whiteColor),
-                                  )),
-                            ],
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                BorderSide(color: AppColors.C_CBD5E1),
+                              ),
+                              filled: true,
+                              fillColor: AppColors.C_F1F5F9,
+                            ),
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blackColor,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ]),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 56,
+                            width: 327,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.C_52B6DF,
+                            ),
+                            child: Stack(
+                              children: [
+                                Align(
+                                  child: Text(
+                                    "Update Profile",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.whiteColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
