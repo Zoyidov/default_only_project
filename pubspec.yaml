@@ -42,7 +42,7 @@ flutter:
 
 
 
-  fonts:
+fonts:
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter.ttf
