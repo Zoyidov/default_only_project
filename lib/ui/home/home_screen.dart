@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:login_screen_homework/ui/home/level_screen.dart';
-import 'package:login_screen_homework/ui/home/widgets/c_button.dart';
-import 'package:login_screen_homework/ui/home/widgets/circle.dart';
-import 'package:login_screen_homework/ui/home/widgets/nc_button.dart';
 import 'package:login_screen_homework/utils/colors.dart';
 
+import 'buttons_widget/c_button.dart';
+import 'buttons_widget/circle.dart';
+import 'buttons_widget/nc_button.dart';
 import 'data_about/data_screen.dart';
 
 class StartScreen extends StatefulWidget {
@@ -63,8 +63,9 @@ class _StartScreenState extends State<StartScreen> {
                   shadowColor: Colors.blueAccent,
                 ),
               ),
-            ListView(
-              children: [ Column(
+            Align(
+              alignment: Alignment.center,
+              child: Column(
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: height * (120 / 812)),
@@ -74,7 +75,7 @@ class _StartScreenState extends State<StartScreen> {
                           "ℚ𝕦𝕚ℤ",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 100,
+                              fontSize: 70,
                               color: AppColors.white),
                         )),
                   ),
@@ -86,7 +87,7 @@ class _StartScreenState extends State<StartScreen> {
                           "𝗟𝗲𝘁’𝘀 𝗣𝗹𝗮𝘆!",
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
-                              fontSize: 50,
+                              fontSize: 40,
                               color: AppColors.white),
                         )),
                   ),
@@ -98,7 +99,7 @@ class _StartScreenState extends State<StartScreen> {
                           "ᴾˡᵃʸ  ⁿᵒʷ & ᵂⁱⁿ",
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
-                              fontSize: 50,
+                              fontSize: 40,
                               color: AppColors.C_02FD2A1),
                         )),
                   ),
@@ -130,7 +131,6 @@ class _StartScreenState extends State<StartScreen> {
                       }, height: 55, width: 256))
                 ],
               ),
-                ]
             ),
           ],
         ),

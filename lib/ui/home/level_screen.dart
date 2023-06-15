@@ -1,11 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:login_screen_homework/ui/home/widgets/c_button.dart';
-import 'package:login_screen_homework/ui/home/widgets/circle.dart';
-import 'package:login_screen_homework/ui/home/widgets/level_button.dart';
+import 'package:login_screen_homework/models/question_model.dart';
+import 'package:login_screen_homework/ui/quiz/easy.dart';
+import 'package:login_screen_homework/ui/quiz/hard.dart';
 import 'package:login_screen_homework/utils/colors.dart';
 
+import '../quiz/normal.dart';
+import 'buttons_widget/c_button.dart';
+import 'buttons_widget/circle.dart';
+import 'buttons_widget/level_button.dart';
 import 'data_about/data_quiz_screen.dart';
 import 'home_screen.dart';
 
@@ -63,88 +67,110 @@ class _LevelScreenState extends State<LevelScreen> {
                 ),
               ),
             ListView(children: [
-              Column(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: height * (120 / 812)),
-                        child: const Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "EasY",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 28,
-                                  color: AppColors.white),
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Level(
-                          text: "Start Quiz",
-                          onTap: () {},
-                          height: 43,
-                          width: 190),
-                      Padding(
-                        padding: EdgeInsets.only(top: height * (120 / 812)),
-                        child: const Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "NorMal",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 28,
-                                  color: AppColors.white),
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Level(
-                          text: "Start Quiz",
-                          onTap: () {},
-                          height: 43,
-                          width: 190),
-                      Padding(
-                        padding: EdgeInsets.only(top: height * (120 / 812)),
-                        child: const Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "HaRd",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 28,
-                                  color: AppColors.white),
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Level(
-                          text: "Start Quiz",
-                          onTap: () {},
-                          height: 43,
-                          width: 190),
-                      const SizedBox(
-                        height: 80,
-                      ),
-                      ButtonC(
-                          text: "About",
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return const About_Quiz();
-                              }),
-                            );
-                          },
-                          height: 50,
-                          width: 150)
-                    ],
-                  ),
-                ],
+              Align(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: height * (120 / 812)),
+                          child: const Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                "EasY",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 28,
+                                    color: AppColors.white),
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Level(
+                            text: "Start Quiz",
+                            onTap: () {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                return EasyLevel(levelModel:
+                                );
+                              }));
+                            },
+                            height: 43,
+                            width: 190),
+                        Padding(
+                          padding: EdgeInsets.only(top: height * (120 / 812)),
+                          child: const Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                "NorMal",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 28,
+                                    color: AppColors.white),
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Level(
+                            text: "Start Quiz",
+                            onTap: () {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                return NormalLevel();
+                              }));
+                            },
+                            height: 43,
+                            width: 190),
+                        Padding(
+                          padding: EdgeInsets.only(top: height * (120 / 812)),
+                          child: const Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                "HaRd",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 28,
+                                    color: AppColors.white),
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Level(
+                            text: "Start Quiz",
+                            onTap: () {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                return HardLevel();
+                              }));
+                            },
+                            height: 43,
+                            width: 190),
+                        const SizedBox(
+                          height: 80,
+                        ),
+                        ButtonC(
+                            text: "About",
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return const About_Quiz();
+                                }),
+                              );
+                            },
+                            height: 50,
+                            width: 150)
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ]),
             Positioned(
@@ -172,16 +198,13 @@ class _LevelScreenState extends State<LevelScreen> {
                   child: Container(
                     height: 50,
                     width: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(55),
-                        color: AppColors.C_5200FF),
                     child: const Align(
                         alignment: Alignment.center,
                         child: Text(
                           "𝐋𝐞𝐯𝐞𝐥 𝐔𝐩",
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 16,
+                              fontSize: 25,
                               color: AppColors.white),
                         )),
                   )),

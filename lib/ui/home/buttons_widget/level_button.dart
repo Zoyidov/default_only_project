@@ -44,13 +44,14 @@ class _LevelState extends State<Level> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(55),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: AppColors.C_5200FF.withOpacity(0.5),
-          //     blurRadius: 5,
-          //     offset: Offset(0, 3),
-          //   ),
-          // ],
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.C_5200FF.withOpacity(0.3),
+              spreadRadius: 10,
+              blurRadius: 30,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),

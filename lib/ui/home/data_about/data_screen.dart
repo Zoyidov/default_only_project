@@ -111,8 +111,8 @@ The quizzes can benefit the people under sections like education and business fi
                           child: Text(
                             "Created by: Zoyidov Nurmuxammad",
                             style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
                                 color: AppColors.C_5200FF),
                           ),
                         ),
