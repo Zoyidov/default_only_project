@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:login_screen_homework/models/level_model.dart';
+import 'package:login_screen_homework/data/questions.dart';
 import 'package:login_screen_homework/ui/home/buttons_widget/level_button.dart';
 import 'package:login_screen_homework/ui/home/level_screen.dart';
 import 'package:login_screen_homework/utils/colors.dart';
@@ -10,8 +10,9 @@ import '../home/buttons_widget/c_button.dart';
 import '../home/buttons_widget/circle.dart';
 
 class EasyLevel extends StatefulWidget {
-  const EasyLevel({Key? key, required this.levelModel}) : super(key: key);
-  final LevelModel levelModel;
+  const EasyLevel({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _EasyLevelState createState() => _EasyLevelState();
@@ -19,6 +20,7 @@ class EasyLevel extends StatefulWidget {
 
 class _EasyLevelState extends State<EasyLevel> {
   int cycle = 1;
+  final data = Questions.quizData;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class _EasyLevelState extends State<EasyLevel> {
                   shadowColor: Colors.blueAccent,
                 ),
               ),
-            Column(
+            const Column(
               children: [
                 Column(
                   children: [],
@@ -74,12 +76,12 @@ class _EasyLevelState extends State<EasyLevel> {
             ),
             Padding(
               padding: EdgeInsets.only(top: height * (50 / 812)),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.topCenter,
-                child: Container(
+                child: SizedBox(
                   height: 50,
                   width: 150,
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.center,
                     child: Text(
                       "Easy",
@@ -111,18 +113,45 @@ class _EasyLevelState extends State<EasyLevel> {
                 },
               ),
             ),
+            Positioned(
+              child: Container(
+                padding: EdgeInsets.only(top: height * (50 / 812), right: 24),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Level(
+                    text: "Submit",
+                    onTap: () {},
+                    height: 50,
+                    width: 100,
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 24),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 24),
                   height: 200,
                   width: 350,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: AppColors.white),
                     color: AppColors.C_030651.withOpacity(0.6),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      data[0].questions[cycle].questionText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -139,6 +168,32 @@ class _EasyLevelState extends State<EasyLevel> {
                     border: Border.all(color: AppColors.white),
                     color: AppColors.C_030651.withOpacity(0.6),
                   ),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      const Text(
+                        "A.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: AppColors.white),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        data[0].questions[cycle].answer1,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -153,6 +208,32 @@ class _EasyLevelState extends State<EasyLevel> {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: AppColors.white),
                     color: AppColors.C_030651.withOpacity(0.6),
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      const Text(
+                        "B.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: AppColors.white),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        data[0].questions[cycle].answer2,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -169,6 +250,32 @@ class _EasyLevelState extends State<EasyLevel> {
                     border: Border.all(color: AppColors.white),
                     color: AppColors.C_030651.withOpacity(0.6),
                   ),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      const Text(
+                        "C.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: AppColors.white),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        data[0].questions[cycle].answer3,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -183,6 +290,32 @@ class _EasyLevelState extends State<EasyLevel> {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: AppColors.white),
                     color: AppColors.C_030651.withOpacity(0.6),
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      const Text(
+                        "D.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: AppColors.white),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        data[0].questions[cycle].answer4,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -204,22 +337,23 @@ class _EasyLevelState extends State<EasyLevel> {
                   ),
                 ),
               ),
-            Padding(
-              padding: const EdgeInsets.only(top: 700, right: 24),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: ButtonC(
-                  text: "Next",
-                  onTap: () {
-                    setState(() {
-                      cycle = cycle + 1;
-                    });
-                  },
-                  height: 50,
-                  width: 100,
+            if (cycle + 1 < data[0].questions.length)
+              Container(
+                padding: const EdgeInsets.only(top: 700, right: 24),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: ButtonC(
+                    text: "Next",
+                    onTap: () {
+                      setState(() {
+                        cycle = cycle + 1;
+                      });
+                    },
+                    height: 50,
+                    width: 100,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

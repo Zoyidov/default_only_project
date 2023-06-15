@@ -94,8 +94,7 @@ class _LevelScreenState extends State<LevelScreen> {
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) {
-                                return EasyLevel(levelModel:
-                                );
+                                return EasyLevel();
                               }));
                             },
                             height: 43,
