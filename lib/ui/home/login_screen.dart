@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:login_screen_homework/ui/home/widgets/sign_up.dart';
 import 'package:login_screen_homework/ui/widgets/button.dart';
 import 'package:login_screen_homework/ui/widgets/global_textfield.dart';
 import 'package:login_screen_homework/ui/widgets/socials.dart';
@@ -31,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            const SizedBox(height: 22,),
             Align(
               alignment: Alignment.topCenter,
               child: Image.asset(
@@ -51,7 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: AppColors.blackColor,
               ),
             ),
-            const SizedBox(height: 16,),
+            const SizedBox(
+              height: 16,
+            ),
             GlobalTextField(
               text: "Email",
               type: TextInputType.emailAddress,
@@ -141,7 +145,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 40,),
+            const SizedBox(
+              height: 40,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -167,7 +173,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 40,),
+            const SizedBox(
+              height: 40,
+            ),
             RichText(
               text: TextSpan(
                 text: "Don’t have an account? ",
@@ -188,6 +196,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpScreen(),
+                          ),
+                        );
                       },
                   ),
                 ],
