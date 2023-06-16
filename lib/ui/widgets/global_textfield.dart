@@ -50,8 +50,8 @@ class _GlobalTextFieldState extends State<GlobalTextField> {
             boxShadow: [
               BoxShadow(
                 color: AppColors.blackColor.withOpacity(0.1),
-                blurRadius: 6,
-                offset: Offset(0, 10),
+                blurRadius: 8,
+                offset: const Offset(0, 10),
               ),
             ],
           ),
@@ -80,18 +80,18 @@ class _GlobalTextFieldState extends State<GlobalTextField> {
                         isPasswordVisible
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: widget.textColor.withOpacity(0.8),
+                        color: widget.textColor.withOpacity(0.4),
                       ),
                     )
                   : null,
               hintText: widget.text,
               border: InputBorder.none,
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-              hintStyle: TextStyle(
+                  const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+              hintStyle: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
-                color: AppColors.blackColor.withOpacity(0.8),
+                color: AppColors.blackColor,
               ),
             ),
           ),

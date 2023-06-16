@@ -29,117 +29,119 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 22,),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Image.asset(
-                AppImages.sign,
-                height: 186,
-                width: 226,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 22,),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                  AppImages.sign,
+                  height: 186,
+                  width: 226,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text(
-              "Sign Up",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-                fontFamily: "SfPro",
-                color: AppColors.blackColor,
+              const SizedBox(
+                height: 16,
               ),
-            ),
-            const SizedBox(height: 16,),
-            GlobalTextField(
-              text: "First Name",
-              type: TextInputType.name,
-              action: TextInputAction.next,
-              icon: SvgPicture.asset(AppImages.user),
-              textColor: AppColors.blackColor,
-              onChanged: (v) {},
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            GlobalTextField(
-              text: "Last Name",
-              type: TextInputType.name,
-              action: TextInputAction.next,
-              icon: SvgPicture.asset(AppImages.user),
-              textColor: AppColors.blackColor,
-              onChanged: (v) {},
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            GlobalTextField(
-              text: "Email",
-              type: TextInputType.name,
-              action: TextInputAction.next,
-              icon: SvgPicture.asset(AppImages.email),
-              textColor: AppColors.blackColor,
-              onChanged: (v) {},
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            GlobalTextField(
-              text: "Password",
-              type: TextInputType.visiblePassword,
-              action: TextInputAction.done,
-              icon: SvgPicture.asset(AppImages.password),
-              textColor: AppColors.blackColor,
-              onChanged: (v) {},
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            GlobalTextField(
-              text: "Confirm Password",
-              type: TextInputType.visiblePassword,
-              action: TextInputAction.done,
-              icon: SvgPicture.asset(AppImages.password),
-              textColor: AppColors.blackColor,
-              onChanged: (v) {},
-            ),
-            const SizedBox(height: 62),
-            Button(text: "SIGNUP", onPressed: (){}),
-            const SizedBox(height: 60,),
-            RichText(
-              text: TextSpan(
-                text: "Already have an account? ",
-                style: const TextStyle(
+              const Text(
+                "Sign Up",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
                   fontFamily: "SfPro",
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
                   color: AppColors.blackColor,
                 ),
-                children: [
-                  TextSpan(
-                    text: "Login",
-                    style: const TextStyle(
-                      fontFamily: "SfPro",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: AppColors.C_1317DD,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
-                      },
-                  ),
-                ],
               ),
-            ),
-          ],
+              const SizedBox(height: 16,),
+              GlobalTextField(
+                text: "First Name",
+                type: TextInputType.name,
+                action: TextInputAction.next,
+                icon: SvgPicture.asset(AppImages.user),
+                textColor: AppColors.blackColor,
+                onChanged: (v) {},
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              GlobalTextField(
+                text: "Last Name",
+                type: TextInputType.name,
+                action: TextInputAction.next,
+                icon: SvgPicture.asset(AppImages.user),
+                textColor: AppColors.blackColor,
+                onChanged: (v) {},
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              GlobalTextField(
+                text: "Email",
+                type: TextInputType.name,
+                action: TextInputAction.next,
+                icon: SvgPicture.asset(AppImages.email),
+                textColor: AppColors.blackColor,
+                onChanged: (v) {},
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              GlobalTextField(
+                text: "Password",
+                type: TextInputType.visiblePassword,
+                action: TextInputAction.done,
+                icon: SvgPicture.asset(AppImages.password),
+                textColor: AppColors.blackColor,
+                onChanged: (v) {},
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              GlobalTextField(
+                text: "Confirm Password",
+                type: TextInputType.visiblePassword,
+                action: TextInputAction.done,
+                icon: SvgPicture.asset(AppImages.password),
+                textColor: AppColors.blackColor,
+                onChanged: (v) {},
+              ),
+              const SizedBox(height: 62),
+              Button(text: "SIGNUP", onPressed: (){}),
+              const SizedBox(height: 60,),
+              RichText(
+                text: TextSpan(
+                  text: "Already have an account? ",
+                  style: const TextStyle(
+                    fontFamily: "SfPro",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    color: AppColors.blackColor,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "Login",
+                      style: const TextStyle(
+                        fontFamily: "SfPro",
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: AppColors.C_1317DD,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
