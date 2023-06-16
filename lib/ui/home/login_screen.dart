@@ -1,5 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:login_screen_homework/ui/home/widgets/sign_up.dart';
@@ -60,12 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
               text: "Email",
               type: TextInputType.emailAddress,
               action: TextInputAction.next,
-              icon: const Icon(
-                Icons.email_outlined,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.email),
               textColor: AppColors.blackColor,
-              onChanged: (v) {},
+              onChanged: (String value) {},
             ),
             const SizedBox(
               height: 6,
@@ -74,12 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
               text: "Password",
               type: TextInputType.visiblePassword,
               action: TextInputAction.done,
-              icon: const Icon(
-                Icons.lock_outline,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.password),
               textColor: AppColors.blackColor,
-              onChanged: (v) {},
+              onChanged: (String value) {},
             ),
             const SizedBox(height: 10),
             Row(
@@ -129,9 +123,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   "OR",
                   style: TextStyle(
-                      fontFamily: "SfPro",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13),
+                    fontFamily: "SfPro",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                  ),
                 ),
                 SizedBox(
                   height: 6,
@@ -139,9 +134,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   "Log in with",
                   style: TextStyle(
-                      fontFamily: "SfPro",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 11),
+                    fontFamily: "SfPro",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 11,
+                  ),
                 ),
               ],
             ),
@@ -152,9 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SocialButton(
-                  svgPicture: SvgPicture.asset(
-                    AppImages.google,
-                  ),
+                  svgPicture: SvgPicture.asset(AppImages.google),
                   onPressed: () {},
                 ),
                 const SizedBox(
@@ -179,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
             RichText(
               text: TextSpan(
                 text: "Don’t have an account? ",
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: "SfPro",
                   fontWeight: FontWeight.w400,
                   fontSize: 14,
@@ -188,11 +182,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   TextSpan(
                     text: "Register now",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: "SfPro",
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                       color: AppColors.C_1317DD,
+                      decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {

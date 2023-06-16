@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:login_screen_homework/ui/widgets/button.dart';
 import 'package:login_screen_homework/ui/widgets/global_textfield.dart';
 import 'package:login_screen_homework/utils/colors.dart';
@@ -56,10 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "First Name",
               type: TextInputType.name,
               action: TextInputAction.next,
-              icon: const Icon(
-                Icons.perm_identity_outlined,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.user),
               textColor: AppColors.blackColor,
               onChanged: (v) {},
             ),
@@ -70,10 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "Last Name",
               type: TextInputType.name,
               action: TextInputAction.next,
-              icon: const Icon(
-                Icons.perm_identity_outlined,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.user),
               textColor: AppColors.blackColor,
               onChanged: (v) {},
             ),
@@ -84,10 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "Email",
               type: TextInputType.name,
               action: TextInputAction.next,
-              icon: const Icon(
-                Icons.email_outlined,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.email),
               textColor: AppColors.blackColor,
               onChanged: (v) {},
             ),
@@ -98,10 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "Password",
               type: TextInputType.visiblePassword,
               action: TextInputAction.done,
-              icon: const Icon(
-                Icons.lock_outline,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.password),
               textColor: AppColors.blackColor,
               onChanged: (v) {},
             ),
@@ -112,10 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               text: "Confirm Password",
               type: TextInputType.visiblePassword,
               action: TextInputAction.done,
-              icon: const Icon(
-                Icons.lock_outline,
-                color: AppColors.C_1317DD,
-              ),
+              icon: SvgPicture.asset(AppImages.password),
               textColor: AppColors.blackColor,
               onChanged: (v) {},
             ),

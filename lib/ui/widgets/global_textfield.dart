@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:login_screen_homework/utils/colors.dart';
 
 class GlobalTextField extends StatefulWidget {
@@ -15,7 +16,7 @@ class GlobalTextField extends StatefulWidget {
   final String text;
   final TextInputType type;
   final TextInputAction action;
-  final Icon icon;
+  final SvgPicture icon;
   final Color textColor;
   final ValueChanged<String> onChanged;
 
@@ -64,7 +65,10 @@ class _GlobalTextFieldState extends State<GlobalTextField> {
             style: TextStyle(color: widget.textColor),
             obscureText: isPasswordType && !isPasswordVisible,
             decoration: InputDecoration(
-              prefixIcon: widget.icon,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(top: 12,left: 12,right: 8,bottom: 13),
+                child: widget.icon,
+              ),
               suffixIcon: isPasswordType
                   ? InkWell(
                       onTap: () {
