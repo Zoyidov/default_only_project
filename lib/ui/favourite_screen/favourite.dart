@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Favourite extends StatefulWidget {
+  const Favourite({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Favourite> createState() => _FavouriteState();
 }
 
-class _HomeState extends State<Home> {
+class _FavouriteState extends State<Favourite> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Favourite"),
         backgroundColor: Colors.blue,
       ),
       body: Container(

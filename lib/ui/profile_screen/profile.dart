@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _HomeState extends State<Home> {
+class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Profile"),
         backgroundColor: Colors.blue,
       ),
       body: Container(
