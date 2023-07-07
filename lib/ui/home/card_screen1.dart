@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_screen_homework/data/network/card_repository.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import '../../models/cards_model.dart';
 
 class CardScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _CardScreenState extends State<CardScreen> {
   late CardRepository cardRepository;
   List<CardsModel> cards = [];
   bool isLoading = false;
+
 
   @override
   void initState() {
@@ -32,7 +34,6 @@ class _CardScreenState extends State<CardScreen> {
       print("Fetched ${cards.length} cards");
     } catch (e) {
       print("Error fetching cards: $e");
-      // Handle the error, show an error message, etc.
     } finally {
       setState(() {
         isLoading = false;
@@ -58,23 +59,95 @@ class _CardScreenState extends State<CardScreen> {
         itemCount: cards.length,
         itemBuilder: (context, index) {
           CardsModel cardsModel = cards[index];
-          return ListTile(
-            title: Row(
-              children: [
-                Text(cardsModel.id),
-                Text(cardsModel.bankName),
-              ],
+          String colorA =
+              "0xFF${cardsModel.colors["color_a"].toString().substring(1)}";
+          String colorB =
+              "0xFF${cardsModel.colors["color_b"].toString().substring(1)}";
+          return ZoomTapAnimation(
+            child: Container(
+              decoration: BoxDecoration(border: Border.all(color: Colors.black),
+                  gradient: LinearGradient(colors: [
+                    Color(int.parse(colorA)),
+                    Color(int.parse(colorB))
+                  ]),
+              ),
+              child: ListTile(
+                onTap: (){},
+                title: Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Text(cardsModel.bankName,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.white),),
+                ),
+                subtitle: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                              child: Text("ID:"+cardsModel.id.toString()+".  ",style: TextStyle(color: Colors.tealAccent,fontWeight: FontWeight.w500),)),
+                          Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                                child: Text(cardsModel.cardNumber,style: TextStyle(color: Colors.black,fontSize: 10),),
+                              )),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                            child: Column(
+                              children: [
+                                Text(cardsModel.cardType,style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w600),),
+                              ],
+                            )),
+                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Value: ',
+                                style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              TextSpan(
+                                text: cardsModel.moneyAmount.toString(),
+                                style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400)
+                              ),
+                              TextSpan(
+                                text: "   "+cardsModel.cardCurrency,
+                                style: TextStyle(color: Colors.indigo,)
+                              ),
+                            ],
+                          ),
+                        ),
+                    ),
+                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 40),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                            child: Text(cardsModel.expireDate,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 10),)),
+                      ),
+                    ],
+                  ),
+                ),
+                trailing: Image.network(cardsModel.iconImage),
+              ),
             ),
-            subtitle: Column(
-              children: [
-                Text(cardsModel.cardNumber),
-                Text(cardsModel.cardType),
-              ],
-            ),
-            trailing: Text(cardsModel.cardCurrency),
           );
         },
       ),
     );
   }
 }
+
+
