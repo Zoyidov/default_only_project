@@ -25,6 +25,7 @@ class _EditContactState extends State<EditContact> {
   var images = [
     AppImages.user,
     AppImages.me,
+    AppImages.xojiakbar,
     AppImages.farrux,
     AppImages.islomjon,
     AppImages.jamshid,

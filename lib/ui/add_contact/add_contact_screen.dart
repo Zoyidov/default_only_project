@@ -23,6 +23,7 @@ class _AddContactState extends State<AddContact> {
   var images = [
     AppImages.user,
     AppImages.me,
+    AppImages.xojiakbar,
     AppImages.farrux,
     AppImages.islomjon,
     AppImages.jamshid,

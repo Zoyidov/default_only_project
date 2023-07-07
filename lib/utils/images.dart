@@ -3,6 +3,7 @@ class AppImages{
   static const String user = "assets/images/default.png";
   static const String farrux = "assets/images/farrux.png";
   static const String jamshid = "assets/images/jamshid.png";
+  static const String xojiakbar = "assets/images/xojiakbar.png";
   static const String xayotbahrom = "assets/images/xayotbahrom.png";
   static const String islomjon = "assets/images/islomjon.jpg";
   static const String sharif = "assets/images/sharif.jpg";
