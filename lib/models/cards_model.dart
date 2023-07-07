@@ -28,7 +28,7 @@
           cardType: json['card_type'] as String? ?? "",
           cardNumber: json['card_number'] as String? ?? "",
           bankName: json['bank_name'] as String? ?? "",
-          moneyAmount: json['money_amount'] as double? ?? 0.0,
+          moneyAmount: json['money_amount'] as double? ?? 0000.0,
           cardCurrency: json['card_currency'] as String? ?? "",
           expireDate: json['expire_date'] as String? ?? "",
           iconImage: json['icon_image'] as String? ?? "",

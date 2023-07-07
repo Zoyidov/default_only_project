@@ -4,14 +4,14 @@ import 'package:login_screen_homework/data/network/card_repository.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import '../../models/cards_model.dart';
 
-class CardScreen extends StatefulWidget {
-  const CardScreen({Key? key}) : super(key: key);
+class CardScreen1 extends StatefulWidget {
+  const CardScreen1({Key? key}) : super(key: key);
 
   @override
-  _CardScreenState createState() => _CardScreenState();
+  _CardScreen1State createState() => _CardScreen1State();
 }
 
-class _CardScreenState extends State<CardScreen> {
+class _CardScreen1State extends State<CardScreen1> {
   late CardRepository cardRepository;
   List<CardsModel> cards = [];
   bool isLoading = false;
@@ -31,9 +31,9 @@ class _CardScreenState extends State<CardScreen> {
 
     try {
       cards = await cardRepository.getUserCards();
-      print("Fetched ${cards.length} cards");
+      // print("Fetched ${cards.length} cards");
     } catch (e) {
-      print("Error fetching cards: $e");
+      // print("Error fetching cards: $e");
     } finally {
       setState(() {
         isLoading = false;
@@ -47,14 +47,14 @@ class _CardScreenState extends State<CardScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.black,
-        title: Text("Data of Card"),
+        title: const Text("Data of Card"),
       ),
       body: isLoading
-          ? Center(
+          ? const Center(
         child: CupertinoActivityIndicator(),
       )
           : cards.isEmpty
-          ? Center(child: Text("Data is empty!"))
+          ? const Center(child: Text("Data is empty!"))
           : ListView.builder(
         itemCount: cards.length,
         itemBuilder: (context, index) {
@@ -72,10 +72,9 @@ class _CardScreenState extends State<CardScreen> {
                   ]),
               ),
               child: ListTile(
-                onTap: (){},
                 title: Padding(
                   padding: const EdgeInsets.only(left: 40),
-                  child: Text(cardsModel.bankName,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.white),),
+                  child: Text(cardsModel.bankName,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.white),),
                 ),
                 subtitle: Align(
                   alignment: Alignment.centerLeft,
@@ -85,12 +84,12 @@ class _CardScreenState extends State<CardScreen> {
                         children: [
                           Align(
                             alignment: Alignment.centerLeft,
-                              child: Text("ID:"+cardsModel.id.toString()+".  ",style: TextStyle(color: Colors.tealAccent,fontWeight: FontWeight.w500),)),
+                              child: Text("ID:${cardsModel.id}.  ",style: const TextStyle(color: Colors.tealAccent,fontWeight: FontWeight.w500),)),
                           Container(
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white,),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                                child: Text(cardsModel.cardNumber,style: TextStyle(color: Colors.black,fontSize: 10),),
+                                child: Text(cardsModel.cardNumber,style: const TextStyle(color: Colors.black,fontSize: 10),),
                               )),
                         ],
                       ),
@@ -100,7 +99,7 @@ class _CardScreenState extends State<CardScreen> {
                           alignment: Alignment.centerLeft,
                             child: Column(
                               children: [
-                                Text(cardsModel.cardType,style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w600),),
+                                Text(cardsModel.cardType,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
                               ],
                             )),
                       ),
@@ -111,7 +110,7 @@ class _CardScreenState extends State<CardScreen> {
                         child: RichText(
                           text: TextSpan(
                             children: [
-                              TextSpan(
+                              const TextSpan(
                                 text: 'Value: ',
                                 style: TextStyle(
                                   color: Colors.blueAccent,
@@ -120,11 +119,11 @@ class _CardScreenState extends State<CardScreen> {
                               ),
                               TextSpan(
                                 text: cardsModel.moneyAmount.toString(),
-                                style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400)
+                                style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w400)
                               ),
                               TextSpan(
-                                text: "   "+cardsModel.cardCurrency,
-                                style: TextStyle(color: Colors.indigo,)
+                                text: "   ${cardsModel.cardCurrency}",
+                                style: const TextStyle(color: Colors.indigo,fontSize: 12)
                               ),
                             ],
                           ),
@@ -135,7 +134,7 @@ class _CardScreenState extends State<CardScreen> {
                         padding: const EdgeInsets.only(left: 40),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                            child: Text(cardsModel.expireDate,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 10),)),
+                            child: Text(cardsModel.expireDate,style: const TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 10),)),
                       ),
                     ],
                   ),
@@ -149,5 +148,3 @@ class _CardScreenState extends State<CardScreen> {
     );
   }
 }
-
-
