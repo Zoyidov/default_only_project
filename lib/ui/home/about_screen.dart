@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_screen_homework/ui/home/home_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../model/currency_model.dart';
 
@@ -38,23 +39,26 @@ class _AboutScreenState extends State<AboutScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(15),
-              child: Column(
+              child: Row(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
                       widget.currency.thumbnail,
-                      width: 60,
-                      height: 60,
+                      width: 120,
+                      height: 120,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    widget.currency.title,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
+                  const SizedBox(height: 20,width: 10,),
+                  Flexible(
+                    child: Text(
+                      widget.currency.title,
+                      
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ],
@@ -66,7 +70,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 21),
+                    fontSize: 18),
                 children: <TextSpan>[
                   TextSpan(
                     text: widget.currency.shortDescription,
@@ -78,13 +82,14 @@ class _AboutScreenState extends State<AboutScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             RichText(
               text: TextSpan(
                 text: 'Genre: ',
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 21),
+                    fontSize: 18),
                 children: <TextSpan>[
                   TextSpan(
                     text: widget.currency.genre,
@@ -96,13 +101,14 @@ class _AboutScreenState extends State<AboutScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             RichText(
               text: TextSpan(
                 text: 'Support platforms: ',
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 21),
+                    fontSize: 18),
                 children: <TextSpan>[
                   TextSpan(
                     text: widget.currency.platform,
@@ -114,13 +120,14 @@ class _AboutScreenState extends State<AboutScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             RichText(
               text: TextSpan(
                 text: 'Release date: ',
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 21),
+                    fontSize: 18),
                 children: <TextSpan>[
                   TextSpan(
                     text: widget.currency.releaseDate,
@@ -132,13 +139,14 @@ class _AboutScreenState extends State<AboutScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             RichText(
               text: TextSpan(
                 text: 'Description: ',
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 21),
+                    fontSize: 18),
                 children: <TextSpan>[
                   TextSpan(
                     text: widget.currency.shortDescription,
@@ -154,22 +162,33 @@ class _AboutScreenState extends State<AboutScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(
-                  'Link to downlod: ',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                      fontSize: 21),
+                SizedBox(height: 20,),
+                Center(
+                  child: const Text(
+                    'Link to downlod: ',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: 18),
+                  ),
                 ),
                 const SizedBox(width: 10),
-                GestureDetector(
-                  onTap: () async {},
-                  child: Text(
-                    widget.currency.gameUrl,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      fontSize: 17,
+                Container(
+                  decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+                  child: TextButton(
+                      onPressed: () async {
+                      final Uri url = Uri.parse(widget.currency.gameUrl);
+                      if (!await launchUrl(url)) {
+                        throw Exception('Could not launch $url');
+                      }
+                    },
+                    child: Text(
+                      widget.currency.gameUrl,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 17,
+                      ),
                     ),
                   ),
                 ),
