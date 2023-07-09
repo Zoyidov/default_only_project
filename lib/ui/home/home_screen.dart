@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(right: 20),
             child: ZoomTapAnimation(
               onTap: (){
-                showSearch(context: context, delegate: CustomSearchDelegate());
+                // showSearch(context: context, delegate: CustomSearchDelegate());
               },
                 child: Icon(CupertinoIcons.search,color: Colors.black,)),
           ),
