@@ -14,7 +14,7 @@ class StoreRepository {
 
   Future<List<StoreModel>> getLimitProducts() async {
     try {
-      final products = await apiProvider.getLimitProducts(limit: 5);
+      final products = await apiProvider.getLimitProducts(limit: 0);
       return products;
     } catch (e) {
       rethrow;
