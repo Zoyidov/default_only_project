@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_screen_homework/ui/home/home_screen.dart';
-import 'package:login_screen_homework/ui/home/widgets/limimted_product_screen.dart';
 
 void main(){
   runApp(MyApp());

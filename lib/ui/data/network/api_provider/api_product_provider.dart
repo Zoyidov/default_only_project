@@ -6,7 +6,7 @@ class ApiProvider {
 
   //<<<<<<<<<<<<<<<<<<<getAllProduct>>>>>>>>>>>>>>>>>>>//
 
-  Future<List<StoreModel>> getAllProduct() async {
+  Future<List<StoreModel>> getAllProducts() async {
     final url = Uri.parse('https://fakestoreapi.com/products');
 
     final response = await http.get(url);
@@ -26,7 +26,7 @@ class ApiProvider {
   //<<<<<<<<<<<<<<<<<<<getLimitProduct>>>>>>>>>>>>>>>>>>>//
 
 
-  Future<List<StoreModel>> getLimitProduct({required int limit}) async {
+  Future<List<StoreModel>> getLimitProducts({required int limit}) async {
     final url = Uri.parse('https://fakestoreapi.com/products?limit=$limit');
     final response = await http.get(url);
 
@@ -45,7 +45,7 @@ class ApiProvider {
   //<<<<<<<<<<<<<<<<<<<getIdProduct>>>>>>>>>>>>>>>>>>>//
 
 
-  Future<StoreModel> getIdProduct({required int id}) async {
+  Future<StoreModel> getIdProducts({required int id}) async {
     final url = Uri.parse('https://fakestoreapi.com/products/$id');
     final response = await http.get(url);
 
@@ -55,6 +55,26 @@ class ApiProvider {
         return StoreModel.fromJson(data);
     } else {
       throw Exception('Failed to load product');
+    }
+  }
+
+
+  //<<<<<<<<<<<<<<<<<<<sortProduct>>>>>>>>>>>>>>>>>>>//
+
+
+
+  Future<List<StoreModel>> sortProduct({required int limit}) async {
+    final url = Uri.parse('https://fakestoreapi.com/products?sort=desc');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body) as List<dynamic>;
+      final List<StoreModel> cards = data.map((cardJson) {
+        return StoreModel.fromJson(cardJson);
+      }).toList();
+      return cards;
+    } else {
+      throw Exception('Failed to load some products');
     }
   }
 }

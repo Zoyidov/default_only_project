@@ -3,18 +3,18 @@ import 'api_provider/api_product_provider.dart';
 
 class StoreRepository {
   final ApiProvider apiProvider = ApiProvider();
-  Future<List<StoreModel>> getAllProduct() async {
+  Future<List<StoreModel>> getAllProducts() async {
     try {
-      final products = await apiProvider.getAllProduct();
+      final products = await apiProvider.getAllProducts();
       return products;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<List<StoreModel>> getLimitProduct() async {
+  Future<List<StoreModel>> getLimitProducts() async {
     try {
-      final products = await apiProvider.getLimitProduct(limit: 5);
+      final products = await apiProvider.getLimitProducts(limit: 5);
       return products;
     } catch (e) {
       rethrow;
@@ -22,12 +22,22 @@ class StoreRepository {
   }
 
 
-  Future<StoreModel> getIdProduct(int? id) async {
+  Future<StoreModel> getIdProducts(int? id) async {
     try {
-      final products = await apiProvider.getIdProduct(id: id!);
+      final products = await apiProvider.getIdProducts(id: id!);
       return products;
     } catch (e) {
       rethrow;
     }
   }
+
+  Future<List<StoreModel>> sortProduct() async {
+    try {
+      final products = await apiProvider.getAllProducts();
+      return products;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 }

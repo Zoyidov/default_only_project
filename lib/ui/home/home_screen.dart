@@ -12,7 +12,7 @@ class StoreScreen extends StatefulWidget {
   const StoreScreen({Key? key}) : super(key: key);
 
   @override
-  State<StoreScreen> createState() => _StoreScreenState();
+  _StoreScreenState createState() => _StoreScreenState();
 }
 
 class _StoreScreenState extends State<StoreScreen> {
@@ -20,6 +20,7 @@ class _StoreScreenState extends State<StoreScreen> {
   List<StoreModel> storeData = [];
   bool isLoading = false;
   String selectedPopupMenuValue = 'All';
+  int limit = 0;
 
   @override
   void initState() {
@@ -27,13 +28,13 @@ class _StoreScreenState extends State<StoreScreen> {
     fetchData();
   }
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     setState(() {
       isLoading = true;
     });
 
     try {
-      final List<StoreModel> fetchedData = await storeRepository.getAllProduct();
+      final List<StoreModel> fetchedData = await storeRepository.getAllProducts();
       setState(() {
         storeData = fetchedData;
       });
@@ -66,9 +67,38 @@ class _StoreScreenState extends State<StoreScreen> {
     if (selectedPopupMenuValue == 'All') {
       return storeData;
     } else {
-      final int limit = int.parse(selectedPopupMenuValue);
       return storeData.take(limit).toList();
     }
+  }
+
+  void _showLimitDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Set Limit'),
+          content: TextField(
+            keyboardType: TextInputType.number,
+            onChanged: (value) {
+              setState(() {
+                limit = int.tryParse(value) ?? 0;
+              });
+            },
+            decoration: InputDecoration(
+              hintText: 'Enter a limit',
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text('OK',style: TextStyle(color: Colors.indigo),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -78,42 +108,33 @@ class _StoreScreenState extends State<StoreScreen> {
         backgroundColor: Colors.indigo,
         title: const Text('Store'),
         actions: [
-          PopupMenuButton(
+          PopupMenuButton<String>(
             icon: Icon(
               Icons.more_vert,
               size: 30,
             ),
             itemBuilder: (BuildContext context) {
               return [
-                PopupMenuItem(
+                PopupMenuItem<String>(
+                  // value:
+                  child: Text('Sort'),
+                ),
+                PopupMenuItem<String>(
                   value: 'All',
-                  child: Text('All'),
+                  child: Text('All Products'),
                 ),
-                PopupMenuItem(
-                  value: '1',
-                  child: Text('1'),
-                ),
-                PopupMenuItem(
-                  value: '2',
-                  child: Text('2'),
-                ),
-                PopupMenuItem(
-                  value: '3',
-                  child: Text('3'),
-                ),
-                PopupMenuItem(
-                  value: '4',
-                  child: Text('4'),
-                ),
-                PopupMenuItem(
-                  value: '5',
-                  child: Text('5'),
+                PopupMenuItem<String>(
+                  value: 'Limit',
+                  child: Text('Give Limit to Products'),
                 ),
               ];
             },
             onSelected: (value) {
               setState(() {
                 selectedPopupMenuValue = value;
+                if (value == 'Limit') {
+                  _showLimitDialog();
+                }
               });
             },
           ),
