@@ -82,6 +82,7 @@ class _StoreScreenState extends State<StoreScreen> {
 
   void _showLimitDialog() {
     showDialog(
+      barrierColor: Colors.indigo,
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -173,11 +174,7 @@ class _StoreScreenState extends State<StoreScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         children: [
-                          Categories(text: "All"),
-                          Categories(text: "Men"),
-                          Categories(text: "Women"),
-                          Categories(text: "Electronic"),
-                          Categories(text: "Jewelery"),
+                          ...List.generate(categorys.length, (index) => categorys[index])
                         ],
                       ),
                     ),
@@ -305,3 +302,11 @@ class _StoreScreenState extends State<StoreScreen> {
     );
   }
 }
+
+List<Categories> categorys = [
+  Categories(text: "All",isSelected: false,),
+  Categories(text: "Men",isSelected: false,),
+  Categories(text: "Women",isSelected: false,),
+  Categories(text: "Electronic",isSelected: false,),
+  Categories(text: "Jewelery",isSelected: false,),
+];

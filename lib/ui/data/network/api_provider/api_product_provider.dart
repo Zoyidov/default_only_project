@@ -77,4 +77,21 @@ class ApiProvider {
       throw Exception('Failed to load some products');
     }
   }
+
+
+  //<<<<<<<<<<<<<<<<<<<deleteProduct>>>>>>>>>>>>>>>>>>>//
+
+
+
+  static Future<StoreModel?>? deletePost() async {
+    final uri = Uri.parse("https://fakestoreapi.com/products");
+    final response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      return null;
+    } else {
+      throw Exception("Failed to load post ");
+    }
+  }
+
 }
