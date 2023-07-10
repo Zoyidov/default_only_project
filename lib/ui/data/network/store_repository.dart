@@ -33,11 +33,10 @@ class StoreRepository {
 
   Future<List<StoreModel>> sortProduct() async {
     try {
-      final products = await apiProvider.getAllProducts();
+      final products = await apiProvider.sortProduct();
       return products;
     } catch (e) {
       rethrow;
     }
   }
-
 }

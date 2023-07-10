@@ -63,7 +63,7 @@ class ApiProvider {
 
 
 
-  Future<List<StoreModel>> sortProduct({required int limit}) async {
+  Future<List<StoreModel>> sortProduct() async {
     final url = Uri.parse('https://fakestoreapi.com/products?sort=desc');
     final response = await http.get(url);
 
