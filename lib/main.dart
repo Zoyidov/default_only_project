@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:login_screen_homework/ui/home/home_screen.dart';
+import 'package:login_screen_homework/ui/home/widgets/place_holder_view.dart';
 import 'package:login_screen_homework/ui/splash/splash_screen.dart';
+
+import 'data/network/prayer_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home:  SplashScreen(),
     );
   }
 }
