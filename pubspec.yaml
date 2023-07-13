@@ -19,6 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.6
   flutter_screenutil: ^5.8.4
+  zoom_tap_animation: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -42,13 +43,13 @@ flutter:
 
 
 
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter.ttf
-          style: italic
-
-    - family: ARCENA
-      fonts:
-        - asset: assets/fonts/ARCENA.ttf
-          style: italic
+#  fonts:
+#    - family: Inter
+#      fonts:
+#        - asset: assets/fonts/Inter.ttf
+#          style: italic
+#
+#    - family: ARCENA
+#      fonts:
+#        - asset: assets/fonts/ARCENA.ttf
+#          style: italic
