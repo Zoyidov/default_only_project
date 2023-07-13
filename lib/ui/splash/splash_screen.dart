@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_screen_homework/ui/home/home_screen.dart';
-import 'package:login_screen_homework/utils/colors.dart';
-
 import '../../utils/images.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -12,11 +9,9 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _navigateToWelcomeScreen(context);
 
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: Colors.white,
         ),
         backgroundColor: Colors.white,

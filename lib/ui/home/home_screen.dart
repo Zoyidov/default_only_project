@@ -1,121 +1,126 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar_week/flutter_calendar_week.dart';
+import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import 'package:login_screen_homework/data/models/prayer_model.dart';
+import 'package:login_screen_homework/data/network/prayer_provider.dart';
+import 'package:login_screen_homework/ui/home/widgets/calendar.dart';
 
-import 'package:intl/intl.dart';
+import 'package:login_screen_homework/utils/images.dart';
 
-import '../../data/models/prayer_model.dart';
-import '../../data/network/prayer_provider.dart';
-import '../../utils/images.dart';
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  List<String> data = ['Bomdod','Quyosh','Peshin','Asr','Shom','Xufton'];
+  List<String> icons = ['assets/images/moon.png','assets/images/sun.png','assets/images/sun.png','assets/images/moon.png','assets/images/cloud.png','assets/images/moon.png'];
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  late DateTime selectedDate;
-  PrayerModel? nomoz;
-  PrayerProvider apiProvider = PrayerProvider();
-
-  @override
-  void initState() {
-    selectedDate = DateTime.now();
-    getPrayerData();
-    super.initState();
-  }
-
-  Future<void> getPrayerData() async {
-    setState(() {});
-    nomoz = await apiProvider.getPrayerModel();
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    return FutureBuilder(
+      future: getPrayerData(),
+      builder: (BuildContext context, AsyncSnapshot<PrayerModel?> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            backgroundColor: const Color(0xFF180B37),
+            body: Center(
+              child: CupertinoActivityIndicator(color: Colors.white,radius: 15,),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Scaffold(
+            backgroundColor: const Color(0xFF180B37),
+            body: Center(
+              child: Text('Error: ${snapshot.error}'),
+            ),
+          );
+        } else {
+          PrayerModel? prayer = snapshot.data;
+          List<String>? times= prayer?.times.values.toList();
+          return Scaffold(
+            backgroundColor: const Color(0xFF180B37),
+            body: Column(
+              children: [
+                Stack(
+                  children: [
+                    Image.asset(AppImages.back),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50, left: 20),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          children: [
+                            Text("Namoz Jadvali",style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20,color: Colors.white)),
+                            TimerCountdown(
 
-    return Scaffold(
-      backgroundColor: const Color(0xFF180B37),
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              Image.asset(AppImages.back),
-              Padding(
-                padding: const EdgeInsets.only(top: 50, right: 20),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Icon(
-                    CupertinoIcons.bell_fill,
-                    color: Colors.white,
-                    size: 30,
+                              format: CountDownTimerFormat.hoursMinutesSeconds,
+                              endTime: DateTime.now().add(
+                                Duration(
+                                  hours: 14,
+                                  minutes: 27,
+                                  seconds: 34,
+                                ),
+                              ),
+                              onEnd: () {
+                                print("Timer finished");
+                              },
+                            ),
+                          ],
+                        )
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50, right: 20),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Icon(
+                          CupertinoIcons.bell_fill,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Text("Mo'min bilan kofirning farqi namozni tark etishdir.",style: TextStyle(color: Colors.white)),
+                SizedBox(height: 30),
+                CalendarPage(),
+                Expanded(
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text(prayer?.region ?? '',
+                            style: TextStyle(color: Colors.white)),
+                        subtitle: Text(prayer?.date ?? '',
+                            style: TextStyle(color: Colors.white)),
+                        trailing: Text(prayer?.weekday ?? '',
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      if (prayer != null)
+                        Expanded(
+                          child: ListView.builder(itemBuilder: (context,index)=>Container(child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(icons[index],height: 20,width: 20,),
+                                Text(data[index], style: TextStyle(color: Colors.white)),
+                                Text(times![index], style: TextStyle(color: Colors.white)),
+                              ],
+                            ),
+                          ),),itemCount: prayer.times.length,)
+        )
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-          // CalendarWeek(
-          //   todayBackgroundColor: Colors.white.withOpacity(0.3),
-          //   backgroundColor: const Color(0xFF180B37),
-          //   controller: CalendarWeekController(),
-          //   height: 110,
-          //   showMonth: true,
-          //   minDate: DateTime.now().add(const Duration(days: -365)),
-          //   maxDate: DateTime.now().add(const Duration(days: 365)),
-          //   onDatePressed: (DateTime datetime) {},
-          //   onDateLongPressed: (DateTime datetime) {},
-          //   onWeekChanged: () {},
-          //   monthViewBuilder: (DateTime time) => Align(
-          //     alignment: FractionalOffset.center,
-          //     child: Container(
-          //       margin: const EdgeInsets.symmetric(vertical: 4),
-          //       child: Text(
-          //         DateFormat.yMMMM().format(time),
-          //         overflow: TextOverflow.ellipsis,
-          //         textAlign: TextAlign.center,
-          //         style: TextStyle(
-          //           color: Colors.white,
-          //           fontWeight: FontWeight.w600,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          //   decorations: [
-          //     DecorationItem(
-          //       decorationAlignment: FractionalOffset.bottomRight,
-          //       date: DateTime.now(),
-          //       decoration: const Icon(
-          //         Icons.today,
-          //         color: Colors.white,
-          //       ),
-          //     ),
-          //     DecorationItem(
-          //       date: DateTime.now().add(const Duration(days: 3)),
-          //       decoration: Text(
-          //         'Holiday',
-          //         style: const TextStyle(
-          //           color: Colors.brown,
-          //           fontWeight: FontWeight.w600,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          Column(
-            children: [
-              ListTile(
-                title: Text(nomoz!.region),
-                subtitle: Text(nomoz!.date),
-                trailing: Text(nomoz!.weekday),
-              ),
-
-            ],
-          ),
-        ],
-      ),
+              ],
+            ),
+          );
+        }
+      },
     );
+  }
+  Future<PrayerModel?> getPrayerData() async {
+    PrayerProvider apiProvider = PrayerProvider();
+    return await apiProvider.getPrayerModel();
   }
 }
