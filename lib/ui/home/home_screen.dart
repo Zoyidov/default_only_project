@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:login_screen_homework/utils/images.dart';
-import '../../data/models/pokemon_model.dart';
 import '../../data/network/provider/pokemon_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,92 +12,131 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final PokemonApiProvider _pokemonApiProvider = PokemonApiProvider();
-  late Future<Pokemon> _pokemonFuture;
+  var pokemonData;
+  PokemonApiProvider apiProvider = PokemonApiProvider();
+
+  _init() async {
+    print(await apiProvider.getPokemon());
+    pokemonData = await apiProvider.getPokemon();
+    setState(() {});
+    print(pokemonData);
+  }
 
   @override
   void initState() {
+    _init();
     super.initState();
-    _pokemonFuture = _pokemonApiProvider.fetchPokemon();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 73, vertical: 31),
-              child: Image.asset(AppImages.pokemon),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 60,
+          ),
+          Center(
+            child: Image.asset(
+              AppImages.pokemon,
+              width: 252,
+              height: 88,
             ),
-            Container(
-              height: 42,
-              width: 296,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFFE5E5E5),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: 296,
+            height: 42,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Color(0xFFE5E5E5),
+            ),
+            child: Center(
+              child: Text(
+                "Buscar Pokémon",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF838282),
+                ),
               ),
-              child: Center(child: Text("Buscar Pokémon")),
             ),
-            Expanded(
-              child: FutureBuilder<Pokemon>(
-                future: _pokemonFuture,
-                builder: (BuildContext context, AsyncSnapshot<Pokemon> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Failed to fetch Pokemon'));
-                  } else if (snapshot.hasData) {
-                    final pokemon = snapshot.data!;
-                    return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemCount: 8,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Stack(
+          ),
+          SizedBox(height: 20),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.4,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemCount: pokemonData.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Stack(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: 117,
+                        width: 177,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color(0xFFFC7CFF),
+                        ),
+                        child: Stack(
                           children: [
-                            Positioned(
-                              bottom: 0,
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(top: 80, left: 15, right: 15),
                               child: Container(
-                                height: 115,
-                                width: 177,
+                                height: 27,
+                                width: 147,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Color(0xFFFC7CFF),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: -16,
-                              left: 46,
-                              child: SizedBox(
-                                height: 108,
-                                width: 117,
-                                child: Image.network(
-                                  // Provide the image URL or path here
-                                  'https://example.com/pokemon-image.png',
-                                  fit: BoxFit.cover,
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xFF676767),
                                 ),
                               ),
                             ),
                           ],
-                        );
-                      },
-                    );
-                  } else {
-                    return Center(child: Text('No Pokemon data available'));
-                  }
-                },
-              ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: -58,
+                      child: SizedBox(
+                        height: 200,
+                        child: CachedNetworkImage(
+                          imageUrl: pokemonData[index].img,
+                          placeholder: (context, url) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 85),
+                            child: Center(
+                              child: CupertinoActivityIndicator(
+                                color: Colors.black,
+                                radius: 15,
+                              ),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 85),
+                                child: Center(child: Icon(Icons.error)),
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

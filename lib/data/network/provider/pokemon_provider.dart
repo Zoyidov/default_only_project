@@ -1,18 +1,19 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:http/http.dart';
 
 import '../../models/pokemon_model.dart';
 
 class PokemonApiProvider {
-  static const String baseUrl = 'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
-
-  Future<Pokemon> fetchPokemon() async {
-    final response = await http.get(Uri.parse(baseUrl));
+  Future getPokemon() async {
+    Response response = await get(Uri.parse(
+        "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json"));
     if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      return Pokemon.fromJson(jsonData);
-    } else {
-      throw Exception('Failed to fetch Pokemon');
+      return (jsonDecode(response.body)["pokemon"] as List?)
+          ?.map((e) => Pokemon.fromJson(e))
+          .toList() ??
+          [];
     }
+    throw response.body;
   }
 }

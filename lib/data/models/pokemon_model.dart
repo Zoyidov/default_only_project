@@ -38,26 +38,27 @@ class Pokemon {
   factory Pokemon.fromJson(Map<String, dynamic> json) {
     final List<dynamic> nextEvolutionData = json['nextEvolution'] ?? [];
     return Pokemon(
-      id: json['id'],
-      num: json['num'],
-      name: json['name'],
-      img: json['img'],
-      type: List<String>.from(json['type']),
-      height: json['height'],
-      weight: json['weight'],
-      candy: json['candy'],
-      candyCount: json['candyCount'],
-      egg: json['egg'],
-      spawnChance: json['spawnChance'].toDouble(),
-      avgSpawns: json['avgSpawns'],
-      spawnTime: json['spawnTime'],
-      multipliers: List<double>.from(json['multipliers']),
-      weaknesses: List<String>.from(json['weaknesses']),
+      id: json['id'] ?? 0,
+      num: json['num'] ?? '',
+      name: json['name'] ?? '',
+      img: json['img'] ?? '',
+      type: List<String>.from(json['type'] ?? []),
+      height: json['height'] ?? '',
+      weight: json['weight'] ?? '',
+      candy: json['candy'] ?? '',
+      candyCount: json['candyCount'] ?? 0,
+      egg: json['egg'] ?? '',
+      spawnChance: json['spawnChance']?.toDouble() ?? 0.0,
+      avgSpawns: json['avgSpawns'] ?? 0,
+      spawnTime: json['spawnTime'] ?? '',
+      multipliers: List<double>.from(json['multipliers'] ?? []),
+      weaknesses: List<String>.from(json['weaknesses'] ?? []),
       nextEvolution: nextEvolutionData
           .map((evolution) => NextEvolution.fromJson(evolution))
           .toList(),
     );
   }
+
 }
 
 class NextEvolution {
@@ -71,8 +72,8 @@ class NextEvolution {
 
   factory NextEvolution.fromJson(Map<String, dynamic> json) {
     return NextEvolution(
-      num: json['num'],
-      name: json['name'],
+      num: json['num']?? '',
+      name: json['name']?? '',
     );
   }
 }
