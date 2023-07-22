@@ -41,14 +41,14 @@ flutter:
 
 
 
-
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter.ttf
-          style: italic
-
-    - family: ARCENA
-      fonts:
-        - asset: assets/fonts/ARCENA.ttf
-          style: italic
+#
+#  fonts:
+#    - family: Inter
+#      fonts:
+#        - asset: assets/fonts/Inter.ttf
+#          style: italic
+#
+#    - family: ARCENA
+#      fonts:
+#        - asset: assets/fonts/ARCENA.ttf
+#          style: italic
