@@ -19,13 +19,13 @@ class _AnimationScreenState extends State<AnimationScreen>
   void initState() {
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 10),
+      duration: Duration(seconds: 15),
     );
     animationController.addListener(() {
       setState(() {});
     });
-    animation = Tween<double>(begin: 25, end: pi).animate(
-        CurvedAnimation(parent: animationController, curve: Curves.bounceIn));
+    animation = Tween<double>(begin: 0, end: 2 * pi).animate(
+        CurvedAnimation(parent: animationController, curve: Curves.linear));
     super.initState();
   }
 
@@ -44,40 +44,41 @@ class _AnimationScreenState extends State<AnimationScreen>
         backgroundColor: Colors.black,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 200, left: 90, right: 90),
+        padding: const EdgeInsets.only(top: 200, left: 50, right: 50),
         child: Column(
           children: [
             SizedBox(
-              height: 300,
+              height: 350,
               child: Transform.rotate(
                 angle: animation.value,
                 child: Stack(
                   children: [
-                    SizedBox(
-                      height: 100,
-                    ),
                     Align(
-                      alignment: Alignment.topLeft,
-                      child: FlutterLogo(
-                        size: 90,
+                      alignment: Alignment.topCenter,
+                      child: Transform.rotate(
+                        angle: -animation.value,
+                        child: Icon(Icons.apple,size: 90,color: Colors.white,)
                       ),
                     ),
                     Align(
-                      alignment: Alignment.topRight,
-                      child: FlutterLogo(
-                        size: 90,
+                      alignment: Alignment.centerLeft,
+                      child: Transform.rotate(
+                        angle: -animation.value,
+                        child: Icon(Icons.apple,size: 90,color: Colors.white,)
                       ),
                     ),
                     Align(
-                      alignment: Alignment.bottomRight,
-                      child: FlutterLogo(
-                        size: 90,
+                      alignment: Alignment.centerRight,
+                      child: Transform.rotate(
+                        angle: -animation.value,
+                        child: Icon(Icons.apple,size: 90,color: Colors.white,)
                       ),
                     ),
                     Align(
-                      alignment: Alignment.bottomLeft,
-                      child: FlutterLogo(
-                        size: 90,
+                      alignment: Alignment.bottomCenter,
+                      child: Transform.rotate(
+                        angle: -animation.value,
+                        child: Icon(Icons.apple,size: 90,color: Colors.white,)
                       ),
                     )
                   ],
@@ -89,12 +90,16 @@ class _AnimationScreenState extends State<AnimationScreen>
       ),
       floatingActionButton: Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.circular(30)),
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(30),
+        ),
         child: FloatingActionButton(
           backgroundColor: Colors.black,
           onPressed: _startRotationAnimation,
-          child: Icon(Icons.play_arrow,size: animation.value,),
+          child: Icon(
+            Icons.play_arrow,
+            size: 30,
+          ),
         ),
       ),
       backgroundColor: Colors.black,
