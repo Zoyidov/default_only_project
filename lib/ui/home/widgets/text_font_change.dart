@@ -40,7 +40,7 @@ class _TextFontChangeState extends State<TextFontChange> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text("Flutter Dev's"),
+                    Text("The Flutter"),
                   ],
                 ),
               ),
@@ -65,7 +65,7 @@ class _TextFontChangeState extends State<TextFontChange> {
                   });
                 },
                 child: const Text(
-                  "Click Here!!",
+                  "Press!",
                 ),
               ),
             )

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AnimationEighthScreen extends StatefulWidget {
-  const AnimationEighthScreen({super.key});
+class JumpText extends StatefulWidget {
+  const JumpText({super.key});
 
   @override
-  State<AnimationEighthScreen> createState() => _AnimationEighthScreenState();
+  State<JumpText> createState() => _JumpTextState();
 }
 
-class _AnimationEighthScreenState extends State<AnimationEighthScreen> {
+class _JumpTextState extends State<JumpText> {
   late AnimationController animationController;
 
   bool _isAnimation = false;
@@ -22,7 +22,7 @@ class _AnimationEighthScreenState extends State<AnimationEighthScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
           centerTitle: true,
-          title: const Text('Animated Delation')),
+          title: const Text('Animated Text')),
       body: Column(children: [
         Container(
           margin: EdgeInsets.all(120),
