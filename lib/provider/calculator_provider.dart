@@ -38,4 +38,8 @@ class CalculatorProvider with ChangeNotifier {
     answer = sqrt(a * b);
     notifyListeners();
   }
+  void reset(){
+    answer = 0;
+    notifyListeners();
+  }
 }

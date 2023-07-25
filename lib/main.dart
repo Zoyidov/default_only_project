@@ -1,7 +1,7 @@
+import 'package:default_project/provider/calculator_provider.dart';
+import 'package:default_project/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:login_screen_homework/provider/calculator_provider.dart';
-import 'package:login_screen_homework/ui/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main()async {

@@ -1,8 +1,7 @@
-
+import 'package:default_project/ui/home/widgets/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:login_screen_homework/ui/home/widgets/toast.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/calculator_provider.dart';
@@ -36,6 +35,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
                       height: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                                 ? Text(
                               answer.getAnswer().toString(),
                               style: const TextStyle(
-                                fontSize: 45,
+                                fontSize: 25,
                                 color: Colors.black,
                               ),
                             )
@@ -113,6 +113,8 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () {
                           number2.clear();
                           number1.clear();
+                          provider.reset();
+
                         },
                         style:
                         TextButton.styleFrom(backgroundColor: Colors.grey),
