@@ -1,13 +1,12 @@
-name: login_screen_homework
+name: default_project
 description: A new Flutter project.
 
 publish_to: 'none'
 
-
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.2 <4.0.0'
+  sdk: '>=3.0.1 <4.0.0'
 
 
 dependencies:
@@ -15,10 +14,14 @@ dependencies:
     sdk: flutter
 
 
-
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.6
   flutter_screenutil: ^5.8.4
+  easy_localization: ^3.0.2
+  shared_preferences: ^2.1.2
+  zoom_tap_animation: ^1.1.0
+  provider: ^6.0.5
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
@@ -28,27 +31,14 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 
-
 flutter:
 
 
   uses-material-design: true
+
 
   assets:
     - assets/images/
     - assets/svg/
     - assets/translations/
 
-
-
-
-  fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter.ttf
-          style: italic
-
-    - family: ARCENA
-      fonts:
-        - asset: assets/fonts/ARCENA.ttf
-          style: italic
