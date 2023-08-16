@@ -1,5 +1,5 @@
-import 'package:default_project/provider/calculator_provider.dart';
-import 'package:default_project/ui/home/home_screen.dart';
+import 'package:default_project/provider/calc_provider.dart';
+import 'package:default_project/ui/home/calculator_sreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
             useMaterial3: true,
           ),
-          home: const HomeScreen(),
+          home: const CalculatorScreen(),
         );
       },
     );

@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/calculator_provider.dart';
+import '../../provider/calc_provider.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class CalculatorScreen extends StatelessWidget {
+  const CalculatorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<CalculatorProvider>(context, listen: false);
 
-    TextEditingController number1 = TextEditingController();
-    TextEditingController number2 = TextEditingController();
+    TextEditingController first_num = TextEditingController();
+    TextEditingController second_num = TextEditingController();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -46,12 +46,12 @@ class HomeScreen extends StatelessWidget {
                           builder: (context, answer, child) {
                             return answer.getAnswer() != 0
                                 ? Text(
-                              answer.getAnswer().toString(),
-                              style: const TextStyle(
-                                fontSize: 25,
-                                color: Colors.black,
-                              ),
-                            )
+                                    answer.getAnswer().toString(),
+                                    style: const TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.black,
+                                    ),
+                                  )
                                 : const SizedBox();
                           },
                         ),
@@ -70,13 +70,12 @@ class HomeScreen extends StatelessWidget {
                                   RegExp(r'[0-9]')),
                               LengthLimitingTextInputFormatter(5),
                             ],
-                            controller: number1,
+                            controller: first_num,
                             keyboardType: TextInputType.number,
                             style: const TextStyle(color: Colors.black),
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                                 focusColor: Colors.black),
-
                           ),
                         ),
                         SizedBox(height: 10),
@@ -88,11 +87,11 @@ class HomeScreen extends StatelessWidget {
                                   RegExp(r'[0-9]')),
                               LengthLimitingTextInputFormatter(5),
                             ],
-                            controller: number2,
+                            controller: second_num,
                             keyboardType: TextInputType.number,
                             style: const TextStyle(color: Colors.black),
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                                 focusColor: Colors.black),
                           ),
                         ),
@@ -111,19 +110,18 @@ class HomeScreen extends StatelessWidget {
                       height: 60,
                       child: TextButton(
                         onPressed: () {
-                          number2.clear();
-                          number1.clear();
+                          second_num.clear();
+                          first_num.clear();
                           provider.reset();
-
                         },
                         style:
-                        TextButton.styleFrom(backgroundColor: Colors.grey),
+                            TextButton.styleFrom(backgroundColor: Colors.grey),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 35),
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
                           child: Text(
                             "AC",
                             textAlign: TextAlign.right,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white,fontSize: 20),
                           ),
                         ),
                       )),
@@ -132,17 +130,19 @@ class HomeScreen extends StatelessWidget {
                     child: ClipOval(
                       child: TextButton(
                         onPressed: () {
-                          if (number1.text.isNotEmpty && number2.text.isNotEmpty) {
-                            provider.middleArithmetic(
-                                int.parse(number1.text), int.parse(number2.text));
+                          if (first_num.text.isNotEmpty &&
+                              second_num.text.isNotEmpty) {
+                            provider.middleArithmetic(int.parse(first_num.text),
+                                int.parse(second_num.text));
                           } else {
                             ToastWidget(message: 'Fill Fields');
                           }
                         },
-                        style: TextButton.styleFrom(backgroundColor: Colors.orange),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.orange),
                         child: const Text(
                           "Ar",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white,fontSize: 20),
                         ),
                       ),
                     ),
@@ -152,17 +152,19 @@ class HomeScreen extends StatelessWidget {
                     child: ClipOval(
                       child: TextButton(
                         onPressed: () {
-                          if (number1.text.isNotEmpty && number2.text.isNotEmpty) {
-                            provider.mediumGeometric(
-                                int.parse(number1.text), int.parse(number2.text));
+                          if (first_num.text.isNotEmpty &&
+                              second_num.text.isNotEmpty) {
+                            provider.mediumGeometric(int.parse(first_num.text),
+                                int.parse(second_num.text));
                           } else {
                             ToastWidget(message: 'Fill Fields');
                           }
                         },
-                        style: TextButton.styleFrom(backgroundColor: Colors.orange),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.orange),
                         child: const Text(
                           "Ge",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white,fontSize: 20),
                         ),
                       ),
                     ),
@@ -180,13 +182,16 @@ class HomeScreen extends StatelessWidget {
                     child: ClipOval(
                       child: TextButton(
                         onPressed: () {
-                          if (number1.text.isNotEmpty && number2.text.isNotEmpty) {
-                            provider.add(int.parse(number1.text), int.parse(number2.text));
+                          if (first_num.text.isNotEmpty &&
+                              second_num.text.isNotEmpty) {
+                            provider.add(int.parse(first_num.text),
+                                int.parse(second_num.text));
                           } else {
                             ToastWidget(message: 'Fill Fields');
                           }
                         },
-                        style: TextButton.styleFrom(backgroundColor: Colors.orange),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.orange),
                         child: Icon(Icons.add, color: Colors.white, size: 30),
                       ),
                     ),
@@ -196,15 +201,18 @@ class HomeScreen extends StatelessWidget {
                     child: ClipOval(
                       child: TextButton(
                         onPressed: () {
-                          if (number1.text.isNotEmpty && number2.text.isNotEmpty) {
-                            provider.subtraction(
-                                int.parse(number1.text), int.parse(number2.text));
+                          if (first_num.text.isNotEmpty &&
+                              second_num.text.isNotEmpty) {
+                            provider.subtraction(int.parse(first_num.text),
+                                int.parse(second_num.text));
                           } else {
                             ToastWidget(message: 'Fill Fields');
                           }
                         },
-                        style: TextButton.styleFrom(backgroundColor: Colors.orange),
-                        child: Icon(CupertinoIcons.minus, color: Colors.white, size: 30),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.orange),
+                        child: Icon(CupertinoIcons.minus,
+                            color: Colors.white, size: 30),
                       ),
                     ),
                   ),
@@ -213,15 +221,18 @@ class HomeScreen extends StatelessWidget {
                     child: ClipOval(
                       child: TextButton(
                         onPressed: () {
-                          if (number1.text.isNotEmpty && number2.text.isNotEmpty) {
-                            provider.multiplication(
-                                int.parse(number1.text), int.parse(number2.text));
+                          if (first_num.text.isNotEmpty &&
+                              second_num.text.isNotEmpty) {
+                            provider.multiplication(int.parse(first_num.text),
+                                int.parse(second_num.text));
                           } else {
                             ToastWidget(message: 'Fill Fields');
                           }
                         },
-                        style: TextButton.styleFrom(backgroundColor: Colors.orange),
-                        child: Icon(CupertinoIcons.multiply, color: Colors.white, size: 30),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.orange),
+                        child: Icon(CupertinoIcons.multiply,
+                            color: Colors.white, size: 30),
                       ),
                     ),
                   ),
@@ -230,15 +241,18 @@ class HomeScreen extends StatelessWidget {
                     child: ClipOval(
                       child: TextButton(
                         onPressed: () {
-                          if (number1.text.isNotEmpty && number2.text.isNotEmpty) {
-                            provider.division(
-                                int.parse(number1.text), int.parse(number2.text));
+                          if (first_num.text.isNotEmpty &&
+                              second_num.text.isNotEmpty) {
+                            provider.division(int.parse(first_num.text),
+                                int.parse(second_num.text));
                           } else {
                             ToastWidget(message: 'Fill Fields');
                           }
                         },
-                        style: TextButton.styleFrom(backgroundColor: Colors.orange),
-                        child: Icon(CupertinoIcons.divide, color: Colors.white, size: 30),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.orange),
+                        child: Icon(CupertinoIcons.divide,
+                            color: Colors.white, size: 30),
                       ),
                     ),
                   ),
